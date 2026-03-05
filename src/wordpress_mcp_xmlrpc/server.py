@@ -1,7 +1,3 @@
-# /// script
-# requires-python = ">=3.11"
-# dependencies = ["fastmcp"]
-# ///
 """WordPress XML-RPC MCP Server.
 
 Wraps all wp.* XML-RPC methods and exposes them as MCP tools returning JSON.
@@ -490,5 +486,9 @@ def deleteFile(attachment_id: int) -> str:
     return wp.call("wp.deleteFile", attachment_id)
 
 
-if __name__ == "__main__":
+def main():
     mcp.run()
+
+
+if __name__ == "__main__":
+    main()
