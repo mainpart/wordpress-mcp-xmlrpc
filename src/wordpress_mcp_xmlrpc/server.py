@@ -487,7 +487,12 @@ def deleteFile(attachment_id: int) -> str:
 
 
 def main():
-    mcp.run()
+    transport = os.environ.get("MCP_TRANSPORT", "stdio")
+    kwargs = {}
+    if transport in ("sse", "streamable-http"):
+        kwargs["host"] = os.environ.get("MCP_HOST", "0.0.0.0")
+        kwargs["port"] = int(os.environ.get("MCP_PORT", "8000"))
+    mcp.run(transport=transport, **kwargs)
 
 
 if __name__ == "__main__":
